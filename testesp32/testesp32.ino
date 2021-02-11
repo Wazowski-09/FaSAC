@@ -4,6 +4,7 @@
 #include <WiFi.h>
 #include <WiFiClient.h>
 #include <BlynkSimpleEsp32.h>
+#include "SHTC3.h"
 
 BlynkTimer timer;
 
@@ -15,6 +16,8 @@ BlynkTimer timer;
 #define relay6 4
 #define relay7 2
 #define relay8 15
+
+SHTC3 s(Wire);
 
 int relay1Status = 0;
 int relay2Status = 0;
@@ -31,8 +34,8 @@ char auth[] = "NVl3WfWqIuQ2sVxLaisFrIj46f0eVK28";
 
 // Your WiFi credentials.
 // Set password to "" for open networks.
-char ssid[] = "A";
-char pass[] = "tablet2520";
+char ssid[] = "FaSAC";
+char pass[] = "Fasac050800";
 
 BLYNK_CONNECTED() {
 
@@ -134,6 +137,18 @@ BLYNK_WRITE(V18)
   Blynk.virtualWrite(V8, relay8Status);
 }
 
+void sendSensor()
+{
+  float h = s.readHumidity();
+  float t = s.readTempC(); // or dht.readTemperature(true) for Fahrenheit
+
+  if (isnan(h) == 0 && isnan(t) == 0) {
+    Serial.println("Failed to read from SHTC3 sensor!");
+  }
+  Blynk.virtualWrite(V21, h);
+  Blynk.virtualWrite(V22, t);
+}
+
 void setup()
 {
   // Debug console
@@ -148,10 +163,9 @@ void setup()
   pinMode(relay8,OUTPUT);
   
   Blynk.begin(auth, ssid, pass,"blynk.honey.co.th",8080);
-  // You can also specify server:
-  //Blynk.begin(auth, ssid, pass, "blynk-cloud.com", 80);
-  //Blynk.begin(auth, ssid, pass, IPAddress(192,168,1,100), 8080);
-  //timer.setInterval(500L, checkPhysicalButton);  
+
+  Wire.begin();
+  timer.setInterval(1000L, sendSensor);
   }
 
 void loop()
@@ -161,4 +175,6 @@ void loop()
   // Check other examples on how to communicate with Blynk. Remember
   // to avoid delay() function!
   timer.run();
+  s.begin(true);
+  s.sample();
 }
