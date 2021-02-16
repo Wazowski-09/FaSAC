@@ -8,14 +8,14 @@
 
 BlynkTimer timer;
 
-#define relay1 19
-#define relay2 18
-#define relay3 5
-#define relay4 17
-#define relay5 16
-#define relay6 4
-#define relay7 2
-#define relay8 15
+#define relay1 36
+#define relay2 39
+#define relay3 34
+#define relay4 35
+#define relay5 32
+#define relay6 33
+#define relay7 25
+#define relay8 26
 
 SHTC3 s(Wire);
 
@@ -47,6 +47,16 @@ BLYNK_CONNECTED() {
   Blynk.syncVirtual(V6);
   Blynk.syncVirtual(V7);
   Blynk.syncVirtual(V8);
+  Blynk.syncVirtual(V11);
+  Blynk.syncVirtual(V12);
+  Blynk.syncVirtual(V13);
+  Blynk.syncVirtual(V14);
+  Blynk.syncVirtual(V15);
+  Blynk.syncVirtual(V16);
+  Blynk.syncVirtual(V17);
+  Blynk.syncVirtual(V18);
+  Blynk.syncVirtual(V21);
+  Blynk.syncVirtual(V22);
 }
 
 BLYNK_WRITE(V1) {
