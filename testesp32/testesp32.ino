@@ -1,3 +1,5 @@
+
+
 #define BLYNK_PRINT Serial
 
 #include <SPI.h>
@@ -6,7 +8,15 @@
 #include <BlynkSimpleEsp32.h>
 #include "SHTC3.h"
 
+WidgetLED led(V32);
+
 BlynkTimer timer;
+
+#define BLYNK_GREEN     "#23C48E"
+#define BLYNK_BLUE      "#04C0F8"
+#define BLYNK_YELLOW    "#ED9D00"
+#define BLYNK_RED       "#D3435C"
+#define BLYNK_DARK_BLUE "#5F7CD8"
 
 #define relay1 32
 #define relay2 33
@@ -103,56 +113,80 @@ BLYNK_WRITE(V8) {
 
 BLYNK_WRITE(V31){
   timerStatus = param.asInt();
+  if(timerStatus == 1){
+    led.setColor(BLYNK_RED);
+    led.on();
+  }
+  else{
+    led.setColor(BLYNK_GREEN);
+    led.on();
+  }
   
   }
   
 BLYNK_WRITE(V11)
 {
+  if(timerStatus == 1){
   relay1Status = param.asInt();
   digitalWrite(relay1, relay1Status);
   Blynk.virtualWrite(V1, relay1Status);
+  }
 }
 BLYNK_WRITE(V12)
 {
+  if(timerStatus == 1){
   relay2Status = param.asInt();
   digitalWrite(relay2, relay2Status);
   Blynk.virtualWrite(V2, relay2Status);
+  }
 }
 BLYNK_WRITE(V13)
 {
+  if(timerStatus == 1){
   relay3Status = param.asInt();
   digitalWrite(relay3, relay3Status);
   Blynk.virtualWrite(V3, relay3Status);
+  }
 }
 BLYNK_WRITE(V14)
 {
+  if(timerStatus == 1){
   relay4Status = param.asInt();
   digitalWrite(relay4, relay4Status);
   Blynk.virtualWrite(V4, relay4Status);
+  }
 }
 BLYNK_WRITE(V15)
 {
+  if(timerStatus == 1){
   relay5Status = param.asInt();
   digitalWrite(relay5, relay5Status);
   Blynk.virtualWrite(V5, relay5Status);
+  }
 }
 BLYNK_WRITE(V16)
 {
+  if(timerStatus == 1){
   relay6Status = param.asInt();
   digitalWrite(relay6, relay6Status);
   Blynk.virtualWrite(V6, relay6Status);
+  }
 }
 BLYNK_WRITE(V17)
 {
+  if(timerStatus == 1){
   relay7Status = param.asInt();
   digitalWrite(relay7, relay7Status);
   Blynk.virtualWrite(V7, relay7Status);
+  }
 }
 BLYNK_WRITE(V18)
 {
+  if(timerStatus == 1){
   relay8Status = param.asInt();
   digitalWrite(relay8, relay8Status);
   Blynk.virtualWrite(V8, relay8Status);
+  }
 }
 
 
