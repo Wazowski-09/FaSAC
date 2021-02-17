@@ -8,14 +8,14 @@
 
 BlynkTimer timer;
 
-#define relay1 36
-#define relay2 39
-#define relay3 34
-#define relay4 35
-#define relay5 32
-#define relay6 33
-#define relay7 25
-#define relay8 26
+#define relay1 32
+#define relay2 33
+#define relay3 25
+#define relay4 26
+#define relay5 27
+#define relay6 14
+#define relay7 12
+#define relay8 13
 
 SHTC3 s(Wire);
 
@@ -28,14 +28,16 @@ int relay6Status = 0;
 int relay7Status = 0;
 int relay8Status = 0;
 
+int timerStatus = 0;
+
 // You should get Auth Token in the Blynk App.
 // Go to the Project Settings (nut icon).
 char auth[] = "NVl3WfWqIuQ2sVxLaisFrIj46f0eVK28";
 
 // Your WiFi credentials.
 // Set password to "" for open networks.
-char ssid[] = "FaSAC";
-char pass[] = "Fasac050800";
+char ssid[] = "A";
+char pass[] = "tablet2520";
 
 BLYNK_CONNECTED() {
 
@@ -57,6 +59,7 @@ BLYNK_CONNECTED() {
   Blynk.syncVirtual(V18);
   Blynk.syncVirtual(V21);
   Blynk.syncVirtual(V22);
+  Blynk.syncVirtual(V31);
 }
 
 BLYNK_WRITE(V1) {
@@ -98,6 +101,11 @@ BLYNK_WRITE(V8) {
   digitalWrite(relay8, relay8Status);
 }
 
+BLYNK_WRITE(V31){
+  timerStatus = param.asInt();
+  
+  }
+  
 BLYNK_WRITE(V11)
 {
   relay1Status = param.asInt();
@@ -146,6 +154,8 @@ BLYNK_WRITE(V18)
   digitalWrite(relay8, relay8Status);
   Blynk.virtualWrite(V8, relay8Status);
 }
+
+
 
 void sendSensor()
 {
