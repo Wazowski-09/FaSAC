@@ -18,14 +18,14 @@ blynk = BlynkLib.Blynk(BLYNK_AUTH,
 i2c = busio.I2C(board.SCL, board.SDA)
 sht = adafruit_shtc3.SHTC3(i2c)
 
-relay1 = 1
-relay2 = 1
-relay3 = 1
-relay4 = 1
-relay5 = 1
-relay6 = 1
-relay7 = 1
-relay8 = 1
+relay1 = 37
+relay2 = 35
+relay3 = 33
+relay4 = 31
+relay5 = 29
+relay6 = 15
+relay7 = 13
+relay8 = 11
 
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(relay1,GPIO.OUT)
