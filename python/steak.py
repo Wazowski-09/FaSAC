@@ -42,7 +42,7 @@ def blynk_connected():
     # You can also use blynk.sync_virtual(pin)
     # to sync a specific virtual pin
     print("Updating values from the server...")
-    blynk.sync_virtual(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20)
+    blynk.sync_virtual(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25)
 
 @blynk.on("V1")
 def v1_write_handler(value):
