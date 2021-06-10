@@ -46,8 +46,8 @@ char auth[] = "NVl3WfWqIuQ2sVxLaisFrIj46f0eVK28";
 
 // Your WiFi credentials.
 // Set password to "" for open networks.
-char ssid[] = "A";
-char pass[] = "tablet2520";
+char ssid[] = "Steakholder_2.4G";
+char pass[] = "Steakholder4-2";
 
 BLYNK_CONNECTED() {
 
